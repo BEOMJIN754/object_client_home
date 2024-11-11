@@ -34,13 +34,6 @@ public class Main {
                 this.socket = new Socket(SERVER_ADDRESS, PORT);
                 System.out.println("서버와 연결되었습니다."); // 서버와 연결되었을 때 콘솔 메시지
 
-                // 서버로부터 데이터 수신
-                ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-                Vector<String> data = (Vector<String>) in.readObject();
-                //print client data
-                for(int i=0;i<data.size();i++) {
-                System.out.println("client::"+data.get(i));
-                }
                 this.pMainFrame = new PMainFrame();
                 this.pMainFrame.initialize(vUser);
             } catch (IOException e) {
