@@ -16,6 +16,7 @@ public class CDirectory extends CControl implements IDirectory{
 	}
 	
 	public Vector<VDirectory> getData(String fileName) throws RemoteException {
+		System.out.println("*Client: "+this.getClass().getSimpleName()+" started");
 		Vector<VDirectory> vDrectories = this.iDirectory.getData(fileName);
 		
 		return vDrectories;

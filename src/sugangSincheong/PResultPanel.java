@@ -40,6 +40,7 @@ public class PResultPanel extends PGangjwaContainer {
 	public void initialize(String fileName) throws RemoteException, NotBoundException {
 		CResult cResult = new CResult();
 		this.vGangjwas = cResult.get(fileName);
+		System.out.println(fileName);
 		this.updateTableContents();
 	}
 	public void finish(String fileName) throws RemoteException, NotBoundException {
