@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Vector;
+import java.util.logging.Level;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -12,6 +13,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import aspect.ExceptionManager;
+import aspect.LmsLogger;
 import constants.Constants.EConfigurations;
 import valueObject.VGangjwa;
 import valueObject.VUser;
@@ -97,23 +99,28 @@ public class PContentPanel extends JPanel {
 	}
 	
 	public class ActionHandler implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent event) {
-			try {
-				Object source = event.getSource();
-				if (source.equals(pControlPanel1.getMoveRightButton())) {
-					moveGangJwas(pSelectionPanel, pMiridamgiPanel);			
-				} else if (source.equals(pControlPanel1.getMoveLeftButton())) {
-					moveGangJwas(pMiridamgiPanel, pSelectionPanel);			
-				} else if (source.equals(pControlPanel2.getMoveRightButton())) {
-					moveGangJwas(pMiridamgiPanel, pSincheongPanel);			
-				} else if (source.equals(pControlPanel2.getMoveLeftButton())) {
-					moveGangJwas(pSincheongPanel, pMiridamgiPanel);			
-				}
-			}catch( RemoteException | NotBoundException e) {
-				ExceptionManager.getInstance().process(e);
-			}
-		}		
+	    @Override
+	    public void actionPerformed(ActionEvent event) {
+	        try {
+	            Object source = event.getSource();
+	            if (source.equals(pControlPanel1.getMoveRightButton())) {
+	                moveGangJwas(pSelectionPanel, pMiridamgiPanel);            
+	                LmsLogger.getLogger().log(Level.INFO, "Moved Gangjwas from Selection Panel to Miridamgi Panel.");
+	            } else if (source.equals(pControlPanel1.getMoveLeftButton())) {
+	                moveGangJwas(pMiridamgiPanel, pSelectionPanel);            
+	                LmsLogger.getLogger().log(Level.INFO, "Moved Gangjwas from Miridamgi Panel to Selection Panel.");
+	            } else if (source.equals(pControlPanel2.getMoveRightButton())) {
+	                moveGangJwas(pMiridamgiPanel, pSincheongPanel);            
+	                LmsLogger.getLogger().log(Level.INFO, "Moved Gangjwas from Miridamgi Panel to Sincheong Panel.");
+	            } else if (source.equals(pControlPanel2.getMoveLeftButton())) {
+	                moveGangJwas(pSincheongPanel, pMiridamgiPanel);            
+	                LmsLogger.getLogger().log(Level.INFO, "Moved Gangjwas from Sincheong Panel to Miridamgi Panel.");
+	            }
+	        } catch (RemoteException | NotBoundException e) {
+	        	LmsLogger.getLogger().log(Level.SEVERE, "Error in ActionHandler: " + e.getMessage());
+	            ExceptionManager.getInstance().process(e);
+	        }
+	    }
 	}
 
 

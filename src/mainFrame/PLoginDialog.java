@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.logging.Level;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -12,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import aspect.LmsLogger;
 import constants.Constants.ELoginDialog;
 import control.CLogin;
 import control.CUser;
@@ -84,10 +86,12 @@ public class PLoginDialog extends JDialog {
 			vLogin.set(userId, password);
 			
 			VResult vResult = this.cLogin.login(vLogin);
-			if (vResult != null) { // �α��� ����
+			if (vResult != null) { 
 				vUser = this.cUser.getUser(userId);
+				 LmsLogger.getLogger().log(Level.INFO, "User login successful." );
 			} else {
 				JOptionPane.showMessageDialog(this, ELoginDialog.loginFailed.getText());
+				LmsLogger.getLogger().log(Level.WARNING, "User login failed.");
 			}
 		} else if (eventSource.equals(this.cancelButton)) {
 		}

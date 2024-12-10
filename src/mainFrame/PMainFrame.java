@@ -5,10 +5,12 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.logging.Level;
 
 import javax.swing.JFrame;
 
 import aspect.ExceptionManager;
+import aspect.LmsLogger;
 import constants.Constants.EMainFrame;
 import sugangSincheong.PSugangSincheongPanel;
 import valueObject.VUser;
@@ -70,6 +72,7 @@ public class PMainFrame extends JFrame {
 		public void windowClosing(WindowEvent e) {			
 			try {
 				finish();
+				LmsLogger.getLogger().log(Level.INFO, "User logout successfully.");
 			} catch (RemoteException | NotBoundException exception) {
 				ExceptionManager.getInstance().process(exception);
 			}
