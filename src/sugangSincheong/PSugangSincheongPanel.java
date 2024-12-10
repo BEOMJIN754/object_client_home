@@ -15,13 +15,14 @@ public class PSugangSincheongPanel extends JPanel {
 	private PContentPanel pContentPanel;
 	private PFooterPanel pFooterPanel;
 	
-	public PSugangSincheongPanel() {
+	public PSugangSincheongPanel(String sessionId) {
 		this.setLayout(new BorderLayout());
 		
 		this.pHeaderPanel = new PHeaderPanel();
 		this.add(this.pHeaderPanel, BorderLayout.NORTH);
 		
-		this.pContentPanel = new PContentPanel();
+		this.pContentPanel = new PContentPanel(sessionId);
+		System.out.println("content"+sessionId);
 		this.add(this.pContentPanel, BorderLayout.CENTER);
 		
 		this.pFooterPanel = new PFooterPanel();

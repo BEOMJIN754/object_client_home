@@ -9,13 +9,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-public class LmsLogger {
+public class LmsLoggingManager {
 
 	private static final Logger logger = Logger.getLogger("ServerLogger");
-    private static final LmsLogger serverLogger = new LmsLogger();
+    private static final LmsLoggingManager serverLogger = new LmsLoggingManager();
     private FileHandler logFileHandler;
 
-    private LmsLogger() {
+    private LmsLoggingManager() {
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
             String fileDate = dateFormat.format(new Date());
@@ -35,7 +35,7 @@ public class LmsLogger {
             e.printStackTrace();
         }
     }
-    public static LmsLogger getLogger() {
+    public static LmsLoggingManager getLogger() {
         return serverLogger;
     }
     public void log(Level level, String message) {

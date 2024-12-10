@@ -1,26 +1,34 @@
-12월 11, 2024 12:14:56 오전 aspect.LmsLogger log
+12월 11, 2024 2:37:25 오전 aspect.LmsLoggingManager log
+정보: User login successful.
+12월 11, 2024 2:37:27 오전 aspect.LmsLoggingManager log
+정보: User logout successfully.
+12월 11, 2024 3:08:26 오전 aspect.LmsLoggingManager log
+정보: User login successful.
+12월 11, 2024 3:08:29 오전 aspect.LmsLoggingManager log
+경고: Invalid session for user search.
+12월 11, 2024 3:09:20 오전 aspect.LmsLoggingManager log
+정보: User login successful.
+12월 11, 2024 3:09:21 오전 aspect.LmsLoggingManager log
+경고: Invalid session for user search.
+12월 11, 2024 3:14:59 오전 aspect.LmsLoggingManager log
+경고: User login failed.
+12월 11, 2024 3:15:07 오전 aspect.LmsLoggingManager log
+정보: User login successful.
+12월 11, 2024 3:15:17 오전 aspect.LmsLoggingManager log
+경고: Invalid session for user search.
+12월 11, 2024 3:16:51 오전 aspect.LmsLoggingManager log
+정보: User login successful.
+12월 11, 2024 3:16:52 오전 aspect.LmsLoggingManager log
+경고: Invalid session for user search.
+12월 11, 2024 3:24:25 오전 aspect.LmsLoggingManager log
+정보: User login successful.
+12월 11, 2024 3:25:32 오전 aspect.LmsLoggingManager log
+정보: User logout successfully.
+12월 11, 2024 3:25:42 오전 aspect.LmsLoggingManager log
+정보: User login successful.
+12월 11, 2024 3:25:44 오전 aspect.LmsLoggingManager log
 정보: Moved Gangjwas from Selection Panel to Miridamgi Panel.
-12월 11, 2024 12:14:59 오전 aspect.LmsLogger log
+12월 11, 2024 3:25:48 오전 aspect.LmsLoggingManager log
 정보: Moved Gangjwas from Miridamgi Panel to Sincheong Panel.
-12월 11, 2024 12:15:00 오전 aspect.LmsLogger log
-정보: Moved Gangjwas from Sincheong Panel to Miridamgi Panel.
-12월 11, 2024 12:15:01 오전 aspect.LmsLogger log
-정보: Moved Gangjwas from Miridamgi Panel to Selection Panel.
-12월 11, 2024 12:34:33 오전 aspect.LmsLogger log
-정보: User login successful: User ID = park
-12월 11, 2024 12:34:41 오전 aspect.LmsLogger log
-정보: Moved Gangjwas from Selection Panel to Miridamgi Panel.
-12월 11, 2024 12:34:42 오전 aspect.LmsLogger log
-정보: Moved Gangjwas from Miridamgi Panel to Sincheong Panel.
-12월 11, 2024 12:34:44 오전 aspect.LmsLogger log
-정보: Moved Gangjwas from Sincheong Panel to Miridamgi Panel.
-12월 11, 2024 12:34:45 오전 aspect.LmsLogger log
-정보: Moved Gangjwas from Miridamgi Panel to Selection Panel.
-12월 11, 2024 12:34:46 오전 aspect.LmsLogger log
-정보: Moved Gangjwas from Miridamgi Panel to Selection Panel.
-12월 11, 2024 12:37:36 오전 aspect.LmsLogger log
-정보: User login successful: User ID = 
-12월 11, 2024 12:37:40 오전 aspect.LmsLogger log
-정보: Moved Gangjwas from Selection Panel to Miridamgi Panel.
-12월 11, 2024 12:37:41 오전 aspect.LmsLogger log
+12월 11, 2024 3:25:50 오전 aspect.LmsLoggingManager log
 정보: User logout successfully.

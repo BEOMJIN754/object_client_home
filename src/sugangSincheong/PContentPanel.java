@@ -13,7 +13,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import aspect.ExceptionManager;
-import aspect.LmsLogger;
+import aspect.LmsLoggingManager;
+import aspect.SessionManager;
 import constants.Constants.EConfigurations;
 import valueObject.VGangjwa;
 import valueObject.VUser;
@@ -33,8 +34,12 @@ public class PContentPanel extends JPanel {
 	private PControlPanel pControlPanel1;
 	private PControlPanel pControlPanel2;
 	
+	private String sessionId;
 	
-	public PContentPanel() {
+	
+	public PContentPanel(String sessionId) {
+		this.sessionId = sessionId;
+		System.out.println("CP:"+sessionId);
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));		
 		
 		this.listSelectionHandler = new ListSelectionHandler();
@@ -102,26 +107,34 @@ public class PContentPanel extends JPanel {
 	    @Override
 	    public void actionPerformed(ActionEvent event) {
 	        try {
+	        	
+	        	if (!SessionManager.verifySession(sessionId)) {
+	                System.out.println("action: "+sessionId);
+	        		return;
+	            }
 	            Object source = event.getSource();
 	            if (source.equals(pControlPanel1.getMoveRightButton())) {
-	                moveGangJwas(pSelectionPanel, pMiridamgiPanel);            
-	                LmsLogger.getLogger().log(Level.INFO, "Moved Gangjwas from Selection Panel to Miridamgi Panel.");
+	                moveGangJwas(pSelectionPanel, pMiridamgiPanel);
+	                log(Level.INFO, "Moved Gangjwas from Selection Panel to Miridamgi Panel.");
 	            } else if (source.equals(pControlPanel1.getMoveLeftButton())) {
 	                moveGangJwas(pMiridamgiPanel, pSelectionPanel);            
-	                LmsLogger.getLogger().log(Level.INFO, "Moved Gangjwas from Miridamgi Panel to Selection Panel.");
+	                log(Level.INFO, "Moved Gangjwas from Miridamgi Panel to Selection Panel.");
 	            } else if (source.equals(pControlPanel2.getMoveRightButton())) {
 	                moveGangJwas(pMiridamgiPanel, pSincheongPanel);            
-	                LmsLogger.getLogger().log(Level.INFO, "Moved Gangjwas from Miridamgi Panel to Sincheong Panel.");
+	                log(Level.INFO, "Moved Gangjwas from Miridamgi Panel to Sincheong Panel.");
 	            } else if (source.equals(pControlPanel2.getMoveLeftButton())) {
 	                moveGangJwas(pSincheongPanel, pMiridamgiPanel);            
-	                LmsLogger.getLogger().log(Level.INFO, "Moved Gangjwas from Sincheong Panel to Miridamgi Panel.");
+	                log(Level.INFO, "Moved Gangjwas from Sincheong Panel to Miridamgi Panel.");
 	            }
 	        } catch (RemoteException | NotBoundException e) {
-	        	LmsLogger.getLogger().log(Level.SEVERE, "Error in ActionHandler: " + e.getMessage());
+	        	LmsLoggingManager.getLogger().log(Level.SEVERE, "Error in ActionHandler: " + e.getMessage());
 	            ExceptionManager.getInstance().process(e);
 	        }
 	    }
 	}
-
+	
+	private void log (Level lever, String message) {
+		LmsLoggingManager.getLogger().log(lever, message);
+	}
 
 }

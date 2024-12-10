@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import javax.swing.JFrame;
 
 import aspect.ExceptionManager;
-import aspect.LmsLogger;
+import aspect.LmsLoggingManager;
 import constants.Constants.EMainFrame;
 import sugangSincheong.PSugangSincheongPanel;
 import valueObject.VUser;
@@ -26,9 +26,11 @@ public class PMainFrame extends JFrame {
 	private WindowListener windowsHandler;
 	// value object
 	private VUser vUser;
+	private String sessionId;
 	
 	// constructor
-	public PMainFrame() {
+	public PMainFrame(String sessionId) {
+		this.sessionId = sessionId;
 		// attributes
 		this.setSize(EMainFrame.width.getInt(), EMainFrame.height.getInt());
 		this.setLocationRelativeTo(null);
@@ -47,7 +49,8 @@ public class PMainFrame extends JFrame {
 		this.pToolBar = new PToolBar();
 		this.add(this.pToolBar, BorderLayout.NORTH);
 		
-		this.pSugangSincheongPanel = new PSugangSincheongPanel();
+		this.pSugangSincheongPanel = new PSugangSincheongPanel(sessionId);
+		System.out.println("MF" + sessionId);
 		this.add(this.pSugangSincheongPanel, BorderLayout.CENTER);
 	}
 
@@ -72,7 +75,7 @@ public class PMainFrame extends JFrame {
 		public void windowClosing(WindowEvent e) {			
 			try {
 				finish();
-				LmsLogger.getLogger().log(Level.INFO, "User logout successfully.");
+				LmsLoggingManager.getLogger().log(Level.INFO, "User logout successfully.");
 			} catch (RemoteException | NotBoundException exception) {
 				ExceptionManager.getInstance().process(exception);
 			}

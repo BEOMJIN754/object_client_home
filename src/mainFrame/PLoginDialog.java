@@ -13,7 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import aspect.LmsLogger;
+import aspect.LmsLoggingManager;
+import aspect.SessionManager;
 import constants.Constants.ELoginDialog;
 import control.CLogin;
 import control.CUser;
@@ -35,6 +36,8 @@ public class PLoginDialog extends JDialog {
 	// Control
 	private CLogin cLogin;
 	private CUser cUser;
+	
+	private String sessionId;
 	
 	public PLoginDialog(ActionHandler actionHandler) throws RemoteException, NotBoundException {
 		this.setSize(ELoginDialog.width.getInt(), ELoginDialog.height.getInt());
@@ -88,13 +91,20 @@ public class PLoginDialog extends JDialog {
 			VResult vResult = this.cLogin.login(vLogin);
 			if (vResult != null) { 
 				vUser = this.cUser.getUser(userId);
-				 LmsLogger.getLogger().log(Level.INFO, "User login successful." );
+				this.sessionId = SessionManager.getSessionManager().createSessionId(userId);
+				System.out.println("Login Dialog"+sessionId);
+				 LmsLoggingManager.getLogger().log(Level.INFO, "User login successful.");
 			} else {
 				JOptionPane.showMessageDialog(this, ELoginDialog.loginFailed.getText());
-				LmsLogger.getLogger().log(Level.WARNING, "User login failed.");
+				LmsLoggingManager.getLogger().log(Level.WARNING, "User login failed.");
 			}
 		} else if (eventSource.equals(this.cancelButton)) {
 		}
 		return vUser;
+	}
+	
+	public String getSessionId() {
+		return this.sessionId;
+		
 	}
 }

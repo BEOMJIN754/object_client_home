@@ -27,8 +27,9 @@ public class Main {
 	private void validateUser(Object source) {
 		try {
 			VUser vUser = this.pLoginDialog.validateUser(source);
-			if (vUser != null) {				
-				this.pMainFrame = new PMainFrame();
+			if (vUser != null) {
+				this.pMainFrame = new PMainFrame(this.pLoginDialog.getSessionId());
+				System.out.println("main: "+this.pLoginDialog.getSessionId());
 				this.pMainFrame.initialize(vUser);
 			}
 			this.pLoginDialog.dispose();
